@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+:root {
+    --primary-bg: #1a1a2e;
+    --secondary-bg: #2b2c45;
+    --accent-color: #e94560;
+    --info-panel-bg: rgba(255, 255, 255, 0.1);
+    --info-text: #fff;
+    --button-bg: #4e4a86;
+    --button-hover: #6a66a3;
+    --canvas-border: #808080;
+    --font-main: 'Press Start 2P', cursive;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--primary-bg);
+    color: var(--info-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1a1a2e, #16162a);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.1);
+    max-width: 95vw;
+}
+
+.main-game-area {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+canvas {
+    border: 5px solid var(--canvas-border);
+    border-radius: 10px;
+    background-color: var(--secondary-bg);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    touch-action: none; /* Prevents default browser scroll behavior on touch */
+}
+
+.info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: var(--info-panel-bg);
+    min-width: 150px;
+    text-align: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.8em;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    font-size: 0.7em;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.value {
+    font-size: 1.2em;
+}
+
+.next-piece-canvas {
+    border: 2px solid var(--canvas-border);
+    background-color: var(--secondary-bg);
+    border-radius: 5px;
+    width: 120px;
+    height: 120px;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.touch-controls {
+    display: none; /* Hidden by default */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.control-button, button {
+    background-color: var(--button-bg);
+    color: var(--info-text);
+    border: none;
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-family: var(--font-main);
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.control-button:hover, button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.4), inset 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.control-button:active, button:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--secondary-bg);
+    border: 3px solid var(--accent-color);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1.2em;
+}
+
+.message-box button {
+    padding: 10px 20px;
+    font-size: 0.8em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        gap: 10px;
+    }
+    .game-container {
+        padding: 10px;
+        flex-direction: column;
+        max-width: 100vw;
+    }
+    .main-game-area {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .info-panel {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        gap: 5px;
+        padding: 10px;
+    }
+    .info-item {
+        flex-grow: 1;
+    }
+    .next-piece-canvas {
+        width: 80px;
+        height: 80px;
+    }
+    .buttons-container {
+        display: none; /* Hide desktop buttons on mobile */
+    }
+    .touch-controls {
+        display: flex; /* Show touch controls on mobile */
+        width: 100%;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .touch-controls .control-button {
+        padding: 20px 20px;
+        font-size: 1.5em;
+        line-height: 1;
+        flex-grow: 1;
+        margin: 0 5px;
+        min-width: 60px;
+        min-height: 60px;
+    }
+    .touch-controls .button-group {
+        display: flex;
+        gap: 10px;
+    }
+    .touch-controls .rotate-drop-group {
+        flex-direction: column;
+    }
+}
